@@ -4,28 +4,50 @@ let listaDeNombres = [];
 
 
 
-function asignarTexto(elemento,texto){
-let elementoHTML = document.querySelector(elemento);
-elementoHTML.innerHTML= texto;
 
-return;
+function asignarTexto(elementou,texto){
+    let elementoHTML = document.querySelector(elementou);
+    elementoHTML.innerHTML= texto;
+    
+    return;
+    
+    }
 
-}
+const lista = document.getElementById("listaAmigos");
 function agregarAmigo(){
 // aqui falta si esta vacio
 let NombreAmigo = document.getElementById('amigo').value;
+
+if (NombreAmigo.trim() === "") {
+    alert("Por favor, inserte un nombre");
+  } else {
+
 listaDeNombres.push(NombreAmigo);
 console.log(listaDeNombres);
-
+const li = document.createElement("li");
+listaDeNombres.forEach(nombre => {
+    
+    li.textContent = nombre; 
+    lista.appendChild(li); 
+});
+  }
 limpiarInput();
 
-asignarTexto('li',listaDeNombres);
+// correr mejor lista
 }
 
 function sortearAmigo(){
-    let numeroGenerado =  Math.floor(Math.random()*listaDeNombres.length)+1;
-    console.log(listaDeNombres.length);
-    asignarTexto('ul','EL AMIGO SECRETO ES : '+listaDeNombres[numeroGenerado]);
+
+   let cantidad = listaDeNombres.length;
+
+   
+   if (cantidad === 0){
+        alert("Por favor, intentelo un nombre ");
+    }else{ 
+     let numeroGenerado =  Math.floor(Math.random()*cantidad);
+     console.log(listaDeNombres.length);
+    asignarTexto('li','EL AMIGO SECRETO ES : '+listaDeNombres[numeroGenerado]);
+    }
 
 }
 
